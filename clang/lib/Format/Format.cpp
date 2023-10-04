@@ -3844,6 +3844,8 @@ static FormatStyle::LanguageKind getLanguageByFileName(StringRef FileName) {
   }
   if (FileName.endswith(".m") || FileName.endswith(".mm"))
     return FormatStyle::LK_ObjC;
+  if (FileName.endswith(".x") || FileName.endswith(".xi") || FileName.endswith(".xm") || FileName.endswith(".xmi"))
+    return FormatStyle::LK_Logos;
   if (FileName.ends_with_insensitive(".proto") ||
       FileName.ends_with_insensitive(".protodevel")) {
     return FormatStyle::LK_Proto;

@@ -2923,6 +2923,8 @@ struct FormatStyle {
     LK_Json,
     /// Should be used for Objective-C, Objective-C++.
     LK_ObjC,
+    /// Should be used for Logos-flavored Objective-C, Objective-C++.
+    LK_Logos,
     /// Should be used for Protocol Buffers
     /// (https://developers.google.com/protocol-buffers/).
     LK_Proto,
@@ -2936,7 +2938,8 @@ struct FormatStyle {
     /// https://sci-hub.st/10.1109/IEEESTD.2018.8299595
     LK_Verilog
   };
-  bool isCpp() const { return Language == LK_Cpp || Language == LK_ObjC; }
+  bool isCpp() const { return Language == LK_Cpp || Language == LK_ObjC || Language == LK_Logos; }
+  bool isLogos() const { return Language == LK_Logos; }
   bool isCSharp() const { return Language == LK_CSharp; }
   bool isJson() const { return Language == LK_Json; }
   bool isJavaScript() const { return Language == LK_JavaScript; }
@@ -5049,7 +5052,9 @@ inline StringRef getLanguageName(FormatStyle::LanguageKind Language) {
   case FormatStyle::LK_CSharp:
     return "CSharp";
   case FormatStyle::LK_ObjC:
-    return "Objective-C";
+    return "Objective-C/C++";
+  case FormatStyle::LK_Logos:
+    return "Objective-C/C++ (Theos Logos)";
   case FormatStyle::LK_Java:
     return "Java";
   case FormatStyle::LK_JavaScript:
